@@ -1,0 +1,656 @@
+/* Paper Lyric Film CSS */
+
+:root {
+  --paper-bg: #efe2d0;
+  --paper-edge: #e6d6c0;
+  --ink: #2a2118;
+  --ink-faint: rgba(42, 33, 24, 0.28);
+  --maroon: #8c2f2f;
+  --font-serif: 'Rozha One', 'Mangal', serif;
+  --font-hindi: 'Tiro Devanagari Hindi', 'Nirmala UI', Mangal, serif;
+}
+
+.stage-viewport {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--paper-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  user-select: none;
+}
+
+/* 16:9 Frame centered as large as viewport allows */
+.stage-frame {
+  position: relative;
+  width: 100%;
+  max-width: calc(100vh * (16 / 9));
+  height: calc(100vw * (9 / 16));
+  max-height: 100vh;
+  aspect-ratio: 16 / 9;
+  background-color: var(--paper-bg);
+  box-shadow: 0 10px 30px rgba(42, 33, 24, 0.08), inset 0 0 40px rgba(42, 33, 24, 0.04);
+  overflow: hidden;
+  cursor: pointer;
+}
+
+/* Intro Goverdhan Parvat Sunrise Scene (Layer 0, z-index: 1) */
+.intro-goverdhan-scene {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+  overflow: hidden;
+  background-color: var(--paper-bg);
+}
+
+.intro-sky-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
+  display: block;
+}
+
+.intro-sun-wrapper {
+  position: absolute;
+  left: 50%;
+  width: 32%;
+  aspect-ratio: 1 / 1;
+  z-index: 2;
+  pointer-events: none;
+  will-change: transform, top, opacity;
+  filter: drop-shadow(0 0 35px rgba(245, 175, 45, 0.45));
+}
+
+.intro-sun-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+.intro-parvat-wrapper {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 68%;
+  z-index: 3;
+  pointer-events: none;
+}
+
+.intro-parvat-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: bottom center;
+  display: block;
+}
+
+.intro-birds-wrapper {
+  position: absolute;
+  top: 10%;
+  left: 8%;
+  width: 80%;
+  height: 38%;
+  z-index: 4;
+  pointer-events: none;
+  will-change: transform, opacity;
+}
+
+.intro-birds-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+/* Cinematic Intro Title Typography (z-index: 5, above parvat & birds) */
+.intro-cinematic-titles {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.cinematic-title-goverdhan {
+  position: absolute;
+  top: 36%;
+  left: 50%;
+  font-family: var(--font-serif);
+  font-size: clamp(2.4rem, 5.5vw, 4.8rem);
+  font-weight: 700;
+  color: var(--ink);
+  text-shadow: 
+    0 2px 8px rgba(255, 240, 215, 0.9),
+    0 4px 20px rgba(140, 47, 47, 0.25),
+    0 1px 2px rgba(42, 33, 24, 0.4);
+  white-space: nowrap;
+  text-transform: capitalize;
+  text-align: center;
+  will-change: transform, opacity, letter-spacing;
+  transition: opacity 0.5s ease;
+}
+
+.cinematic-subtitle-presents {
+  position: absolute;
+  top: 48%;
+  left: 50%;
+  font-family: var(--font-hindi);
+  font-size: clamp(1.3rem, 2.8vw, 2.3rem);
+  font-weight: 600;
+  letter-spacing: 0.35em;
+  color: var(--maroon);
+  text-transform: uppercase;
+  text-shadow: 0 1px 6px rgba(255, 245, 230, 0.9);
+  white-space: nowrap;
+  text-align: center;
+  will-change: transform, opacity;
+  transition: opacity 0.5s ease;
+}
+
+/* Plates Layer */
+.plates-container {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.plate-layer {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  will-change: transform, opacity;
+}
+
+.plate-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  pointer-events: none;
+}
+
+/* Individual Scene Cast and Element Layer container */
+.scene-cast-element {
+  position: absolute;
+  pointer-events: none;
+  display: block;
+  will-change: transform, opacity;
+}
+
+.scene-cast-element img {
+  filter: contrast(1.08) saturate(1.12) drop-shadow(0 2px 4px rgba(42, 33, 24, 0.16));
+}
+
+/* Overlays Layer (Between Plates and Type) */
+.overlay-layer {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.rain-overlay {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+  transition: opacity 0.5s linear;
+}
+
+.tear-overlay {
+  position: absolute;
+  width: 6%;
+  aspect-ratio: 1 / 1;
+  left: 54%;
+  top: 36%;
+  pointer-events: none;
+  transition: transform 3.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Type Layer (Above Overlays and Plates) */
+.type-layer {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 3;
+}
+
+/* Anchored Line Positioning */
+.lyric-line-wrapper {
+  position: absolute;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35em;
+  font-family: var(--font-serif);
+  font-size: clamp(1.4rem, 3.2vw, 2.85rem);
+  line-height: 1.35;
+  letter-spacing: 0.02em;
+  text-shadow: 0 1px 2px rgba(42, 33, 24, 0.1);
+  transition: opacity 0.35s ease;
+}
+
+.anchor-center {
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  justify-content: center;
+  max-width: 82%;
+}
+
+.anchor-left {
+  left: 7.5%;
+  top: 40%;
+  transform: translateY(-50%);
+  max-width: 48%;
+  text-align: left;
+  justify-content: flex-start;
+}
+
+.anchor-right {
+  right: 7.5%;
+  top: 40%;
+  transform: translateY(-50%);
+  max-width: 48%;
+  text-align: right;
+  justify-content: flex-end;
+}
+
+.anchor-lower-left {
+  left: 7.5%;
+  bottom: 12%;
+  max-width: 50%;
+  text-align: left;
+  justify-content: flex-start;
+}
+
+.anchor-low-center {
+  left: 50%;
+  bottom: 12%;
+  transform: translateX(-50%);
+  text-align: center;
+  justify-content: center;
+  max-width: 80%;
+}
+
+.anchor-low {
+  left: 50%;
+  bottom: 7%;
+  transform: translateX(-50%);
+  text-align: center;
+  justify-content: center;
+  max-width: 86%;
+}
+
+/* Individual Words Container with Handwriting Pen Effect */
+.lyric-word-container {
+  display: inline-block;
+  position: relative;
+  vertical-align: baseline;
+  transition: transform 0.22s cubic-bezier(0.2, 0.8, 0.3, 1);
+  will-change: transform, clip-path;
+}
+
+/* Faint pencil trace before ink is drawn */
+.lyric-word-faint {
+  display: inline-block;
+  color: var(--ink-faint);
+  opacity: 0.28;
+  filter: blur(0.25px);
+  user-select: none;
+  transition: opacity 0.3s ease;
+}
+
+.lyric-word-container.sung .lyric-word-faint {
+  opacity: 0;
+}
+
+.lyric-word-container.current .lyric-word-faint {
+  opacity: 0.18;
+}
+
+/* Freshly penned rich ink layer */
+.lyric-word-ink {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  white-space: nowrap;
+  pointer-events: none;
+  color: var(--ink);
+  transition: color 0.25s ease, filter 0.2s ease;
+  will-change: clip-path;
+}
+
+/* When active word is being drawn with pen: rich dark maroon ink */
+.lyric-word-container.current .lyric-word-ink {
+  color: var(--maroon);
+  text-shadow: 0 0 1px rgba(140, 47, 47, 0.4), 0 1px 3px rgba(140, 47, 47, 0.2);
+}
+
+.lyric-word-container.current {
+  transform: scale(1.03) translateY(-1px);
+}
+
+/* When finished singing: solidifies into permanent ink black */
+.lyric-word-container.sung .lyric-word-ink {
+  color: var(--ink);
+  text-shadow: 0 0.5px 1px rgba(42, 33, 24, 0.25);
+}
+
+/* Glowing Pen Nib Tip at the active drawing edge */
+.pen-nib-nib {
+  position: absolute;
+  top: -15%;
+  bottom: -15%;
+  width: 2px;
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgba(140, 47, 47, 0.9) 25%,
+    rgba(215, 120, 80, 1) 50%,
+    rgba(140, 47, 47, 0.9) 75%,
+    transparent 100%
+  );
+  box-shadow: 0 0 6px 1.5px rgba(140, 47, 47, 0.7), 0 0 12px 3px rgba(220, 150, 90, 0.5);
+  transform: translateX(-50%);
+  pointer-events: none;
+  border-radius: 2px;
+  opacity: 0.95;
+  filter: drop-shadow(0 0 2px rgba(140, 47, 47, 0.8));
+  will-change: left;
+}
+
+/* Credits in Intro */
+.credit-item {
+  position: absolute;
+  transition: opacity 0.4s ease;
+}
+
+.credit-presentation {
+  left: 50%;
+  top: 36%;
+  transform: translate(-50%, -50%);
+  font-family: var(--font-hindi);
+  font-size: clamp(1rem, 1.8vw, 1.4rem);
+  color: var(--ink-faint);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.credit-title {
+  left: 50%;
+  top: 10%;
+  transform: translate(-50%, -50%);
+  font-family: var(--font-serif);
+  font-size: clamp(2rem, 4.2vw, 3.6rem);
+  color: var(--ink);
+  text-align: center;
+  white-space: nowrap;
+}
+
+.credit-subtitle {
+  right: 10%;
+  top: 18%;
+  transform: translateY(-50%);
+  font-family: var(--font-serif);
+  font-size: clamp(1.4rem, 2.6vw, 2.2rem);
+  color: var(--ink);
+  text-align: right;
+}
+
+.credit-poet {
+  right: 8%;
+  top: 72%;
+  transform: translateY(-50%);
+  font-family: var(--font-hindi);
+  font-size: clamp(1.2rem, 2.2vw, 1.8rem);
+  color: var(--maroon);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-align: right;
+  text-shadow: 0 1px 4px rgba(255, 245, 230, 0.9);
+}
+
+.credit-poet span {
+  display: block;
+  font-size: 0.6em;
+  color: var(--ink-faint);
+  font-weight: 400;
+  margin-bottom: 0.15em;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+/* Sanskrit Shloka Verse (Right Side in Radha-Krishna separation plate) */
+.credit-shloka {
+  right: 6%;
+  top: 42%;
+  transform: translateY(-50%);
+  max-width: 46%;
+  text-align: right;
+  pointer-events: none;
+}
+
+.shloka-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55em;
+  font-family: var(--font-serif);
+  font-size: clamp(1.15rem, 2.1vw, 1.85rem);
+  line-height: 1.5;
+  color: var(--ink);
+  letter-spacing: 0.02em;
+  text-shadow: 
+    0 1px 3px rgba(255, 248, 238, 0.95),
+    0 2px 8px rgba(42, 33, 24, 0.12);
+}
+
+.shloka-line {
+  display: block;
+}
+
+.shloka-subtext {
+  margin-top: 0.9rem;
+  font-family: var(--font-hindi);
+  font-size: clamp(0.9rem, 1.35vw, 1.15rem);
+  color: var(--maroon);
+  letter-spacing: 0.06em;
+  font-style: italic;
+  opacity: 0.85;
+}
+
+/* Big Initial Play Button Prompt */
+.play-prompt-backdrop {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(239, 226, 208, 0.45);
+  backdrop-filter: blur(2px);
+  z-index: 10;
+  cursor: pointer;
+  transition: opacity 0.3s ease;
+}
+
+.play-prompt-button {
+  background: transparent;
+  border: 1.5px solid var(--ink);
+  color: var(--ink);
+  padding: 0.8rem 2.2rem;
+  font-family: var(--font-hindi);
+  font-size: clamp(1.2rem, 2vw, 1.6rem);
+  border-radius: 40px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  transition: all 0.25s ease;
+  box-shadow: 0 4px 14px rgba(42, 33, 24, 0.08);
+}
+
+.play-prompt-button:hover {
+  background-color: var(--ink);
+  color: var(--paper-bg);
+  transform: scale(1.03);
+}
+
+.play-prompt-sub {
+  margin-top: 0.8rem;
+  font-family: var(--font-hindi);
+  font-size: clamp(0.85rem, 1.2vw, 1rem);
+  color: var(--ink-faint);
+}
+
+/* Controls Overlay */
+.controls-bar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 1.2rem 1.6rem 0.8rem;
+  background: linear-gradient(to top, rgba(239, 226, 208, 0.95) 0%, rgba(239, 226, 208, 0.6) 60%, transparent 100%);
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  z-index: 20;
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  font-family: var(--font-hindi);
+  color: var(--ink);
+}
+
+.controls-bar.hidden {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(8px);
+}
+
+.progress-track-wrapper {
+  position: relative;
+  width: 100%;
+  height: 14px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.progress-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 4px;
+  background: rgba(42, 33, 24, 0.15);
+  border-radius: 2px;
+  outline: none;
+  cursor: pointer;
+}
+
+.progress-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--maroon);
+  cursor: pointer;
+  transition: transform 0.1s ease;
+}
+
+.progress-slider::-webkit-slider-thumb:hover {
+  transform: scale(1.3);
+}
+
+.progress-slider::-moz-range-thumb {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--maroon);
+  border: none;
+  cursor: pointer;
+}
+
+.controls-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.controls-left {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.control-btn {
+  background: none;
+  border: 1px solid rgba(42, 33, 24, 0.3);
+  border-radius: 4px;
+  color: var(--ink);
+  font-family: var(--font-hindi);
+  font-size: 0.9rem;
+  padding: 0.3rem 0.75rem;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  transition: all 0.2s ease;
+}
+
+.control-btn:hover {
+  border-color: var(--maroon);
+  color: var(--maroon);
+}
+
+.time-display {
+  font-family: var(--font-hindi);
+  font-size: 0.95rem;
+  color: var(--ink);
+  letter-spacing: 0.05em;
+  font-variant-numeric: tabular-nums;
+}
+
+.time-sep {
+  margin: 0 0.25rem;
+  color: var(--ink-faint);
+}
+
+/* Reduced Motion Mode */
+@media (prefers-reduced-motion: reduce) {
+  .plate-layer {
+    transition: none !important;
+    transform: none !important;
+  }
+  .lyric-word.current {
+    transform: none !important;
+  }
+  .tear-overlay {
+    transition: none !important;
+  }
+}
