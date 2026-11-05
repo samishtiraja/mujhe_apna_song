@@ -1,21 +1,157 @@
-// Timeline definitions and word-level timestamps for "मुझे अपना बनाकर छोड़ गए"
+// SongScript DSL Timeline definitions and word-level timestamps for "मुझे अपना बनाकर छोड़ गए"
 // Total song duration is 289 seconds (0:00.0 through 4:49.0)
 
-export const TOTAL_DURATION = 289.0
+export const meta = {
+  title: 'मुझे अपना बनाकर छोड़ गए',
+  artist: 'Raja Hindustani',
+  duration: 289.0,
+  audio: '/song/aaye%20na%20sawariya.mp3',
+}
+
+export const TOTAL_DURATION = meta.duration
+
+export const sections = [
+  { id: 'intro', label: 'प्रस्तावना', start: 0.0, end: 14.8, color: '#c99e64' },
+  { id: 'chorus1', label: 'मुखड़ा', start: 14.8, end: 57.8, color: '#8c2f2f' },
+  { id: 'verse1', label: 'अंतरा १', start: 57.8, end: 120.0, color: '#4a5d4e' },
+  { id: 'verse2', label: 'अंतरा २', start: 122.0, end: 184.0, color: '#684a5d' },
+  { id: 'verse3', label: 'अंतरा ३', start: 184.0, end: 234.0, color: '#a0522d' },
+  { id: 'verse4', label: 'अंतरा ४', start: 236.0, end: 287.0, color: '#3d4a68' },
+  { id: 'outro', label: 'समाप्ति', start: 287.0, end: 289.0, color: '#777777' },
+]
 
 export const credits = [
-  { id: 'pres', text: '', start: 2.2, end: 5.4, anchor: 'center', isCredit: true },
-  { id: 'title', text: 'मुझे अपना बनाकर छोड़ गए', start: 4.6, end: 8.4, anchor: 'center', isTitle: true },
-  { id: 'sub', text: 'आए ना सँवरिया बेदरदी', start: 6.2, end: 9.0, anchor: 'right', isSubtitle: true },
-  { id: 'poet', text: 'Raja Hindustani', start: 9.8, end: 14.8, anchor: 'right', isPoet: true },
+  {
+    id: 'pres',
+    text: 'Goverdhan Divine Scape Presents',
+    start: 0.8,
+    end: 4.5,
+    isCredit: true,
+    position: { anchor: 'center', top: '48%', left: '50%' },
+    motion: { scaleStart: 0.94, scaleEnd: 1.06, yStart: 6, yEnd: -6 },
+    style: { fontSize: '2.5vw', letterSpacing: '0.12em', color: '#5a3d28', textShadow: '0 2px 10px rgba(0,0,0,0.1)' },
+    enter: { type: 'blur-in', duration: 0.8 },
+    exit: { type: 'fade-out', duration: 0.6 },
+  },
+  {
+    id: 'title',
+    text: 'मुझे अपना बनाकर छोड़ गए',
+    start: 4.6,
+    end: 8.8,
+    isTitle: true,
+    position: { anchor: 'center', top: '44%', left: '50%' },
+    motion: { scaleStart: 0.96, scaleEnd: 1.08, yStart: 8, yEnd: -6 },
+    style: { fontSize: '3.8vw', color: '#2a2118', letterSpacing: '0.04em', textShadow: '0 2px 12px rgba(0,0,0,0.12)' },
+    enter: { type: 'scale-in', duration: 0.8 },
+    exit: { type: 'fade-out', duration: 0.6 },
+  },
+  {
+    id: 'sub',
+    text: 'आए ना सँवरिया बेदरदी',
+    start: 5.8,
+    end: 9.0,
+    isSubtitle: true,
+    position: { anchor: 'center', top: '56%', left: '50%' },
+    motion: { scaleStart: 0.98, scaleEnd: 1.04, yStart: 6, yEnd: -4 },
+    style: { fontSize: '2.1vw', color: '#8c2f2f', textShadow: '0 2px 8px rgba(0,0,0,0.08)' },
+    enter: { type: 'slide-up', duration: 0.7 },
+    exit: { type: 'fade-out', duration: 0.5 },
+  },
+  {
+    id: 'poet',
+    text: 'Raja Hindustani',
+    start: 9.6,
+    end: 14.8,
+    isPoet: true,
+    position: { top: '16%', right: '8%', textAlign: 'right' },
+    motion: { xStart: 25, xEnd: 0 },
+    style: { fontSize: '1.4vw' },
+    enter: { type: 'slide-down', duration: 0.6 },
+    exit: { type: 'fade-out', duration: 0.5 },
+  },
   {
     id: 'shloka',
     text: 'हा हा धिक् मे वृषभानुजायाः, राधा विरहातप्तं च मानसम्।\nसखे सखे किमिदं सञ्जातं, कृष्ण विरह दुःखं विषह्यते॥',
     subtext: '— विरह भाव (राधा-कृष्ण वियोग)',
-    start: 9.8,
+    start: 9.6,
     end: 14.8,
-    anchor: 'right',
     isShloka: true,
+    position: { top: '26%', right: '8%', textAlign: 'right' },
+    motion: { yStart: 10, yEnd: -5 },
+    living: { type: 'float', amp: 2, period: 4 },
+    enter: { type: 'fade-in', duration: 0.8 },
+    exit: { type: 'fade-out', duration: 0.6 },
+  },
+]
+
+export const tracks = [
+  {
+    id: 'ambient_dust',
+    type: 'particle',
+    start: 0.0,
+    end: 289.0,
+    particle: {
+      count: 22,
+      color: 'rgba(215, 190, 160, 0.35)',
+      sizeRange: [2, 5],
+      speedRange: [0.2, 0.6],
+      drift: 'float-up',
+    },
+    blend: 'screen',
+    zIndex: 5,
+  },
+  {
+    id: 'dawn_golden_sparkles',
+    type: 'particle',
+    start: 0.0,
+    end: 10.0,
+    particle: {
+      count: 20,
+      color: 'rgba(255, 215, 110, 0.65)',
+      sizeRange: [2, 4.5],
+      speedRange: [0.4, 0.9],
+      drift: 'float-up',
+    },
+    blend: 'screen',
+    zIndex: 6,
+  },
+  {
+    id: 'intro_scene_callout',
+    type: 'text',
+    start: 0.8,
+    end: 4.2,
+    text: '॥ श्री राधा कृष्ण विरह चरितम् ॥',
+    position: { top: '8%', left: '50%', textAlign: 'center' },
+    motion: { yStart: -12, yEnd: 0 },
+    style: { fontSize: '1.3vw', color: 'rgba(140, 47, 47, 0.75)', letterSpacing: '0.15em' },
+    enter: { type: 'blur-in', duration: 0.8 },
+    exit: { type: 'fade-out', duration: 0.5 },
+    zIndex: 15,
+  },
+  {
+    id: 'rain_overlay',
+    type: 'overlay',
+    start: 183.8,
+    end: 224.0,
+    src: '/assets/paper/ov_rain.png',
+    chromaKey: true,
+    blend: 'screen',
+    opacity: { peak: 0.52 },
+    fadeIn: 1.2,
+    fadeOut: 1.5,
+    zIndex: 10,
+  },
+  {
+    id: 'tear_overlay',
+    type: 'overlay',
+    start: 250.0,
+    end: 254.0,
+    src: '/assets/paper/ov_tear.png',
+    chromaKey: true,
+    motion: { yStart: 0, yEnd: 120 },
+    fadeIn: 0.4,
+    fadeOut: 0.6,
+    zIndex: 10,
   },
 ]
 
@@ -40,12 +176,17 @@ export const shots = [
   },
   {
     id: 's03',
-    start: 9.8,
+    start: 9.4,
     end: 15.2,
     file: 'plate_radha_krishna_separation.png',
     src: '/assets/paper/plate_radha_krishna_separation.png',
     fade: 0.6,
-    camera: { scaleStart: 1.0, scaleEnd: 1.05, originStartX: 32, originStartY: 52, originEndX: 42, originEndY: 50 },
+    transition: { type: 'blur-through', duration: 0.8 },
+    effects: {
+      vignette: { strength: 0.24, size: 75 },
+      colorGrade: { contrast: 1.05 },
+    },
+    camera: { scaleStart: 1.0, scaleEnd: 1.06, originStartX: 32, originStartY: 52, originEndX: 42, originEndY: 50 },
     layers: [
       {
         id: 'mourning_peacock',
@@ -54,6 +195,11 @@ export const shots = [
         end: 15.2,
         enter: { type: 'smoke-dissolve', duration: 1.0 },
         living: { type: 'sway', amp: 3.5, period: 4.2 },
+        keyframes: [
+          { at: 0.0, x: 0, y: 0, scale: 0.95 },
+          { at: 0.5, x: 6, y: -4, scale: 1.0 },
+          { at: 1.0, x: 12, y: 0, scale: 1.05 },
+        ],
         exit: { type: 'smoke-evaporate', duration: 0.8 },
         position: {
           top: '6%',
@@ -96,6 +242,12 @@ export const shots = [
         end: 15.2,
         enter: { type: 'float-up', duration: 0.9 },
         living: { type: 'float', amp: 6, period: 3.2 },
+        keyframes: [
+          { at: 0.0, x: -35, y: 15, scale: 0.82, rot: -2 },
+          { at: 0.35, x: -5, y: 2, scale: 0.92, rot: 1 },
+          { at: 0.7, x: 20, y: -8, scale: 1.02, rot: -1 },
+          { at: 1.0, x: 45, y: -16, scale: 1.1, rot: 0 },
+        ],
         exit: { type: 'smoke-evaporate', duration: 0.6 },
         position: {
           top: '12%',
@@ -534,6 +686,7 @@ export const shots = [
 
 // All lyric lines with exact word timings from song/timestampwithlyrics.md
 // Spelling: सँवरिया (with chandrabindu)
+
 export const lyricLines = [
   // Chorus 1
   {
@@ -1255,3 +1408,14 @@ export const lyricLines = [
     ],
   },
 ]
+
+export const songScript = {
+  meta,
+  sections,
+  shots,
+  lyricLines,
+  tracks,
+  credits,
+}
+
+export default songScript

@@ -70,6 +70,17 @@ export function useClock(duration, mediaRef) {
     return () => cancelAnimationFrame(rafRef.current)
   }, [duration, mediaRef])
 
+  // Headless frame-by-frame export hook
+  useEffect(() => {
+    window.__SET_TIMELINE_TIME__ = (t) => {
+      timeRef.current = t
+      setTime(t)
+    }
+    return () => {
+      delete window.__SET_TIMELINE_TIME__
+    }
+  }, [])
+
   const play = useCallback(() => {
     const media = mediaRef?.current
     if (timeRef.current >= durationRef.current - 0.001) {

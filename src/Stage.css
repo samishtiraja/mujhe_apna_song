@@ -654,3 +654,158 @@
     transition: none !important;
   }
 }
+
+/* ─────────────────────────────────────────────────────────────
+   SongScript Engine V2 Styles (Section Markers, Badges, Overlays)
+   ───────────────────────────────────────────────────────────── */
+
+/* Interactive Section Markers */
+.stage-viewport.export-mode {
+  padding: 0 !important;
+  margin: 0 !important;
+  background: var(--paper-bg) !important;
+}
+
+.stage-viewport.export-mode .stage-frame {
+  width: 100vw !important;
+  height: 100vh !important;
+  max-width: none !important;
+  max-height: none !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+.section-markers-track {
+  position: absolute;
+  top: -2px;
+  left: 0;
+  right: 0;
+  height: 8px;
+  pointer-events: none;
+  display: flex;
+}
+
+.section-segment {
+  position: absolute;
+  height: 100%;
+  pointer-events: auto;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.section-dot {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--sec-color, var(--maroon));
+  opacity: 0.7;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.section-segment:hover .section-dot,
+.section-segment.active .section-dot {
+  transform: translateY(-50%) scale(1.6);
+  opacity: 1;
+}
+
+.section-label-chip {
+  position: absolute;
+  top: -22px;
+  left: 0;
+  transform: translateX(-30%);
+  font-family: var(--font-hindi);
+  font-size: 0.68rem;
+  background: rgba(42, 33, 24, 0.85);
+  color: var(--paper-bg);
+  padding: 1px 5px;
+  border-radius: 3px;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.section-segment:hover .section-label-chip {
+  opacity: 1;
+  transform: translateX(-30%) translateY(-2px);
+}
+
+/* Floating Active Section Badge */
+.current-section-badge {
+  position: absolute;
+  top: 1.2rem;
+  left: 1.6rem;
+  z-index: 25;
+  font-family: var(--font-hindi);
+  font-size: clamp(0.75rem, 1.1vw, 0.95rem);
+  letter-spacing: 0.08em;
+  color: var(--badge-color, var(--maroon));
+  background: rgba(239, 226, 208, 0.75);
+  backdrop-filter: blur(4px);
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  border: 1px solid rgba(140, 47, 47, 0.25);
+  pointer-events: none;
+  box-shadow: 0 2px 8px rgba(42, 33, 24, 0.06);
+  animation: sectionBadgeFade 0.5s ease;
+}
+
+@keyframes sectionBadgeFade {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Shot Vignette Overlay */
+.shot-vignette-overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+/* Track Overlays & Floating Text */
+.tracks-container-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 3;
+}
+
+.track-text-element {
+  position: absolute;
+  font-family: var(--font-hindi);
+  pointer-events: none;
+  white-space: pre-line;
+  transition: color 0.3s ease;
+}
+
+/* Word Reveal Animations */
+.lyric-word-container.word-style-pop {
+  display: inline-block;
+  transform-origin: center bottom;
+}
+
+.lyric-word-container.word-style-glow-pulse.current {
+  display: inline-block;
+  transform-origin: center center;
+}
+
+.lyric-word-container.word-style-stamp {
+  display: inline-block;
+  transform-origin: center center;
+}
+
+.lyric-word-container.word-style-bloom {
+  display: inline-block;
+  transform-origin: center center;
+}
